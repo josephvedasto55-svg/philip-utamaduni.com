@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Vendors | Kigamboni Utamaduni Carnival</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2B48C;
+            --accent: #D4AF37;
+            --light: #F5F5DC;
+            --dark: #2F1B14;
+            --text: #333333;
+            --white: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; }
+        .logo-icon { font-size: 2.2rem; color: var(--primary); }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--dark); }
+        .logo-text span { color: var(--accent); }
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        nav a:hover, nav a.active { color: var(--primary); }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        .hero {
+            background: linear-gradient(rgba(47, 27, 20, 0.85), rgba(47, 27, 20, 0.85)), url('https://images.unsplash.com/photo-1529007196863-d07650a3f938?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.1rem; opacity: 0.95; max-width: 700px; margin: 0 auto; }
+        section { padding: 70px 0; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 10px; }
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: var(--accent);
+            margin: 12px auto 0;
+        }
+        .section-header p { color: var(--primary); max-width: 700px; margin: 0 auto; }
+        .layout {
+            display: grid;
+            grid-template-columns: 1.7fr 1.3fr;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .info-block {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .info-block h3 { color: var(--primary); margin-bottom: 8px; }
+        .info-block p { font-size: 0.95rem; margin-bottom: 8px; }
+        .info-list {
+            margin-top: 8px;
+            padding-left: 18px;
+            font-size: 0.9rem;
+        }
+        .form-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+        }
+        .form-card h3 { margin-bottom: 10px; color: var(--primary); }
+        .form-card p { font-size: 0.95rem; margin-bottom: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+        }
+        .form-group textarea { min-height: 90px; resize: vertical; }
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 10px 26px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid var(--accent);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+        footer {
+            background: var(--dark);
+            color: var(--light);
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-content p { font-size: 0.9rem; opacity: 0.9; }
+        .footer-content a { color: var(--accent); text-decoration: none; }
+        @media (max-width: 992px) {
+            .layout { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+            nav ul.show { display: flex; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="kigamboni.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-drum"></i></div>
+                <div class="logo-text">KIGAMBONI <span>UTAMADUNI</span> CARNIVAL</div>
+            </a>
+            <button class="mobile-menu-btn" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="kigamboni.html#home">Home</a></li>
+                    <li><a href="kigamboni.html#events">Events</a></li>
+                    <li><a href="kigamboni.html#heritage">Heritage</a></li>
+                    <li><a href="kigamboni.html#gallery">Gallery</a></li>
+                    <li><a href="kigamboni.html#about">About</a></li>
+                    <li><a href="meet-our-team.html">Meet Our Team</a></li>
+                    <li><a href="tickets.html">Get Tickets</a></li>
+                    <li><a href="kigamboni.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Food Vendors</h1>
+            <p>Share your traditional cuisine at our global food festival. Become a vendor and introduce your culture through food.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Join as a Food Vendor?</h2>
+                <p>Celebrate Tanzania’s and the world’s flavors while connecting with visitors from across the globe.</p>
+            </div>
+            <div class="layout">
+                <div>
+                    <div class="info-block">
+                        <h3>What You Can Offer</h3>
+                        <p>We welcome a wide range of traditional and contemporary dishes that reflect your cultural heritage.</p>
+                        <ul class="info-list">
+                            <li>Signature dishes from your home region.</li>
+                            <li>Traditional drinks and snacks.</li>
+                            <li>Vegetarian and halal-friendly options are encouraged.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h3>Vendor Requirements</h3>
+                        <p>To ensure safety and a great guest experience, vendors should be prepared with:</p>
+                        <ul class="info-list">
+                            <li>Valid food handling permits (where applicable).</li>
+                            <li>Clean and well-presented stalls or food trucks.</li>
+                            <li>Clear menus with pricing and allergen information.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h3>What We Provide</h3>
+                        <p>Registered vendors receive:</p>
+                        <ul class="info-list">
+                            <li>Allocated stall space within the carnival grounds.</li>
+                            <li>Basic utilities information (power/water availability varies by zone).</li>
+                            <li>Promotion on our official channels where possible.</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="form-card">
+                    <h3>Vendor Interest Form</h3>
+                    <p>Share your details and our team will contact you with stall availability, pricing, and requirements.</p>
+                    <form id="vendorForm">
+                        <div class="form-group">
+                            <label for="vendorName">Vendor / Business Name</label>
+                            <input type="text" id="vendorName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vendorContact">Contact Person</label>
+                            <input type="text" id="vendorContact" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vendorEmail">Email</label>
+                            <input type="email" id="vendorEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cuisineType">Type of Cuisine</label>
+                            <input type="text" id="cuisineType" placeholder="e.g. Swahili seafood, Chaga dishes, Zanzibari snacks" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vendorNeeds">Stall Requirements</label>
+                            <textarea id="vendorNeeds" placeholder="Power needs, equipment you will bring, special considerations" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Submit Vendor Application</button>
+                        <a href="kigamboni.html#contact" class="btn" style="margin-left: 8px;">Contact Office</a>
+                    </form>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 National Cultural Authority of Tanzania. All rights reserved.</p>
+                <a href="kigamboni.html#contact">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+            });
+        }
+        const vendorForm = document.getElementById('vendorForm');
+        if (vendorForm) {
+            vendorForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your interest in being a food vendor! Our team will contact you shortly.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
+
